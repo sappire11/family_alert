@@ -59,6 +59,7 @@ class _HomepageState extends State<Homepage> {
               Flexible(
                 flex: 3,
                 child: BottomNavigationBar(
+                  elevation: 0,
                   items: [
                     BottomNavigationBarItem(
                       icon: Icon(Icons.home),
@@ -88,8 +89,9 @@ class _HomepageState extends State<Homepage> {
                 flex: 1,
                 child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Color(0xff121212)),
+                      elevation: MaterialStateProperty.all(0),
+                      backgroundColor:  MaterialStateProperty.all(Colors.white),
+                      foregroundColor: MaterialStateProperty.all(Colors.grey[800]),
                     ),
                     onPressed: () => {
                           if (mounted) {logout()}
