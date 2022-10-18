@@ -81,7 +81,7 @@ class _HomepageState extends State<Homepage> {
                     // ),
                   ],
                   currentIndex: _currentIndex,
-                  selectedItemColor: Colors.amber[800],
+                  // selectedItemColor: Colors.amber[800],
                   onTap: _onItemClick,
                 ),
               ),
