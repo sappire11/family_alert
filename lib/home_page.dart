@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled/RSTP.dart';
@@ -29,12 +31,13 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+
   bool saving = false;
   int _currentIndex = 0; //預設值
   // final pages = [FunctionA() , Fall(), Account()];
   final pages = [FunctionA() , Fall(),VideoRSTP()];
   // final title = ["主頁", "跌倒紀錄", "帳號設定"];
-  final title = ["主頁", "跌倒紀錄","即時影像"];
+  final title = ["將影像跌倒辨識應用於獨居者智慧家庭", "跌倒紀錄","即時影像"];
   void _onItemClick(int index) {
 
     setState(() {
@@ -55,11 +58,11 @@ class _HomepageState extends State<Homepage> {
           width: MediaQuery.of(context).size.width,
           height: 60,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
 
               Flexible(
-                flex: 1,
+                flex: 3,
                 child: BottomNavigationBar(
                   items: [
                     BottomNavigationBarItem(
@@ -92,7 +95,7 @@ class _HomepageState extends State<Homepage> {
                   flex: 1,
                   child: ElevatedButton(
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                        backgroundColor: MaterialStateProperty.all(  Color(0xff121212) ),
                         ),
 
                           onPressed: ()=>{
