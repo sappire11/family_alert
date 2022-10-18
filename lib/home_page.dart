@@ -31,36 +31,31 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-
   bool saving = false;
   int _currentIndex = 0; //預設值
   // final pages = [FunctionA() , Fall(), Account()];
-  final pages = [FunctionA() , Fall(),VideoRSTP()];
+  final pages = [FunctionA(), Fall(), VideoRSTP()];
   // final title = ["主頁", "跌倒紀錄", "帳號設定"];
-  final title = ["將影像跌倒辨識應用於獨居者智慧家庭", "跌倒紀錄","即時影像"];
+  final title = ["將影像跌倒辨識應用於獨居者智慧家庭", "跌倒紀錄", "即時影像"];
   void _onItemClick(int index) {
-
     setState(() {
       print(index);
 
       _currentIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(title: Text(title[_currentIndex])),
-      body:  pages[_currentIndex],
-        bottomNavigationBar:
-
-        Container(
+        appBar: AppBar(title: Text(title[_currentIndex])),
+        body: pages[_currentIndex],
+        bottomNavigationBar: Container(
           width: MediaQuery.of(context).size.width,
           height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-
               Flexible(
                 flex: 3,
                 child: BottomNavigationBar(
@@ -83,8 +78,6 @@ class _HomepageState extends State<Homepage> {
                     //   icon: Icon(Icons.settings),
                     //   label: '設定',
                     // ),
-
-
                   ],
                   currentIndex: _currentIndex,
                   selectedItemColor: Colors.amber[800],
@@ -92,37 +85,28 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
               Flexible(
-                  flex: 1,
-                  child: ElevatedButton(
+                flex: 1,
+                child: ElevatedButton(
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(  Color(0xff121212) ),
-                        ),
-
-                          onPressed: ()=>{
-                            if(mounted) {
-                              logout()
-                            }
-                      }, child:
-                           Column(
-                             mainAxisAlignment: MainAxisAlignment.center,
-                             children: [
-                               Icon(Icons.logout_outlined),
-                               Text("登出")
-                             ],
-                           )),
-                   ),
+                      backgroundColor:
+                          MaterialStateProperty.all(Color(0xff121212)),
+                    ),
+                    onPressed: () => {
+                          if (mounted) {logout()}
+                        },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [Icon(Icons.logout_outlined), Text("登出")],
+                    )),
+              ),
             ],
           ),
         ));
-
-
-
   }
-  logout(){
 
-      context.read<Setting>().logout();
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil('/main', (Route<dynamic> route) => false);
-
+  logout() {
+    context.read<Setting>().logout();
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/main', (Route<dynamic> route) => false);
   }
 }
