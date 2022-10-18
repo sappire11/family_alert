@@ -6,12 +6,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:untitled/2page.dart';
-import 'package:untitled/function_page.dart';
-import 'package:untitled/local.dart';
+import 'package:untitled/register.dart';
+import 'package:untitled/information.dart';
+import 'package:untitled/db.dart';
 import 'package:untitled/provider/setting.dart';
 import 'package:untitled/viedo.dart';
-import 'package:untitled/acconnt_function.dart';
+import 'package:untitled/setting.dart';
 import 'package:provider/provider.dart';
 
 import 'home_page.dart';

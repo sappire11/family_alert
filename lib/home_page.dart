@@ -6,9 +6,9 @@ import 'package:untitled/test_note.dart';
 import 'package:untitled/viedo.dart';
 import 'package:untitled/webview.dart';
 
-import 'acconnt_function.dart';
-import 'fall.dart';
-import 'function_page.dart';
+import 'setting.dart';
+import 'fall_record.dart';
+import 'information.dart';
 
 class Homepage extends StatefulWidget {
   //MyHomePage({Key? key, required this.title}) : super(key: key);
