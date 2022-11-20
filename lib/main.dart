@@ -11,9 +11,12 @@ import 'package:untitled/control_panel.dart';
 import 'package:untitled/function_page.dart';
 import 'package:untitled/local.dart';
 import 'package:untitled/provider/contral_panel_provider.dart';
+import 'package:untitled/register.dart';
+import 'package:untitled/information.dart';
+import 'package:untitled/db.dart';
 import 'package:untitled/provider/setting.dart';
 import 'package:untitled/viedo.dart';
-import 'package:untitled/acconnt_function.dart';
+import 'package:untitled/setting.dart';
 import 'package:provider/provider.dart';
 
 import 'home_page.dart';
@@ -59,9 +62,9 @@ class MyApp extends StatelessWidget {
         },
         title: 'Flutter Demo',
         theme: ThemeData(
-          brightness: Brightness.dark,
-          primaryColor: Colors.grey[800],
-          accentColor: Colors.cyan[600],
+          // brightness: Brightness.dark,
+          // primaryColor: Colors.grey[800],
+          // accentColor: Colors.cyan[600],
         ),
         darkTheme: ThemeData.dark(),
         home: MyHomePage(title: 'Flutter Demo Home Page'),

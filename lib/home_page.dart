@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled/RSTP.dart';
@@ -7,9 +9,9 @@ import 'package:untitled/test_note.dart';
 import 'package:untitled/viedo.dart';
 import 'package:untitled/webview.dart';
 
-import 'acconnt_function.dart';
-import 'fall.dart';
-import 'function_page.dart';
+import 'setting.dart';
+import 'fall_record.dart';
+import 'information.dart';
 
 class Homepage extends StatefulWidget {
   //MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -35,33 +37,30 @@ class _HomepageState extends State<Homepage> {
   // final pages = [FunctionA() , Fall(), Account()];
   final pages = [FunctionA() , Fall(),VideoRSTP(),ControlPanel()];
   // final title = ["主頁", "跌倒紀錄", "帳號設定"];
-  final title = ["主頁", "跌倒紀錄","即時影像","居家管理"];
+  final title = ["將影像跌倒辨識應用於獨居者智慧家庭", "跌倒紀錄","即時影像","居家管理"];
   void _onItemClick(int index) {
-
     setState(() {
       print(index);
 
       _currentIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(title: Text(title[_currentIndex])),
-      body:  pages[_currentIndex],
-        bottomNavigationBar:
-
-        Container(
+        appBar: AppBar(title: Text(title[_currentIndex])),
+        body: pages[_currentIndex],
+        bottomNavigationBar: Container(
           width: MediaQuery.of(context).size.width,
           height: 60,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-
               Flexible(
-                flex: 1,
+                flex: 3,
                 child: BottomNavigationBar(
+                  elevation: 0,
                   items: [
                     BottomNavigationBarItem(
                       icon: Icon(Icons.home),
@@ -84,46 +83,36 @@ class _HomepageState extends State<Homepage> {
                     //   icon: Icon(Icons.settings),
                     //   label: '設定',
                     // ),
-
-
                   ],
                   currentIndex: _currentIndex,
-                  selectedItemColor: Colors.amber[800],
+                  // selectedItemColor: Colors.amber[800],
                   onTap: _onItemClick,
                 ),
               ),
               Flexible(
-                  flex: 1,
-                  child: ElevatedButton(
+                flex: 1,
+                child: ElevatedButton(
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Colors.transparent),
-                        ),
-
-                          onPressed: ()=>{
-                            if(mounted) {
-                              logout()
-                            }
-                      }, child:
-                           Column(
-                             mainAxisAlignment: MainAxisAlignment.center,
-                             children: [
-                               Icon(Icons.logout_outlined),
-                               Text("登出")
-                             ],
-                           )),
-                   ),
+                      elevation: MaterialStateProperty.all(0),
+                      backgroundColor:  MaterialStateProperty.all(Colors.white),
+                      foregroundColor: MaterialStateProperty.all(Colors.grey[800]),
+                    ),
+                    onPressed: () => {
+                          if (mounted) {logout()}
+                        },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [Icon(Icons.logout_outlined), Text("登出")],
+                    )),
+              ),
             ],
           ),
         ));
-
-
-
   }
-  logout(){
 
-      context.read<Setting>().logout();
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil('/main', (Route<dynamic> route) => false);
-
+  logout() {
+    context.read<Setting>().logout();
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/main', (Route<dynamic> route) => false);
   }
 }

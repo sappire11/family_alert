@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled/acconnt_function.dart';
-import 'package:untitled/fall.dart';
+import 'package:untitled/setting.dart';
+import 'package:untitled/fall_record.dart';
 import 'package:untitled/provider/setting.dart';
 import 'package:untitled/viedo.dart';
 import 'package:http/http.dart' as http;
@@ -33,6 +33,12 @@ class FunctionA extends StatefulWidget {
 
 class _FunctionAState extends State<FunctionA> {
   bool saving = false;
+  final double fontHeaderSize = 22;
+  final double fontContentSize = 18;
+  final Color normalBorder = Colors.green;
+  final Color troubleBorder = Colors.red;
+  TextStyle headStyle = TextStyle(fontSize: 22,fontWeight: FontWeight.bold);
+  TextStyle contentStyle = TextStyle(fontSize: 18,color: Colors.green);
 
 
   @override
@@ -67,109 +73,163 @@ class _FunctionAState extends State<FunctionA> {
                       return  Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-
-                              height: MediaQuery.of(context).size.height/4,
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text( (info.fallState == 1)?"跌倒了":"沒有跌倒"  ),
-                                  ),
-
-
-                                  if(info.fallState == 1)Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('跌倒時間' + info.fallTime.toString()),
-                                  ),
-                                  if(info.fallState == 1)Divider(thickness: 5,),
-                                  if(info.fallState == 1)
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: TextButton(onPressed: (){
-                                        //寫死的影片位置
-                                        Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (context) =>
-                                                WebViewExample(url: "https://forum.gamer.com.tw/C.php?bsn=34880&snA=12188&tnum=15&subbsn=2")));
-                                        //真正用api替換影片網址的function
-                                        // getVideoUrl(info.fallTime);
-                                        // Navigator.of(context).push(MaterialPageRoute(
-                                        //     builder: (context) =>
-                                        //         Video(time: info.fallTime.toString())));
-                                      }, child: Text("確認影片")),
-                                    ),
-                                ],
-                              )),
-                          Divider(thickness: 5,endIndent: 0,),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Center(
-                                child: Container(
+                              Container(
+                                  height:MediaQuery.of(context).size.height*0.35,
+                                  width:MediaQuery.of(context).size.width*0.5,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color:  (info.fallState == 1)?Colors.red:Colors.green,width: 5)
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text( (info.fallState == 1)?"發生跌倒事件":"沒有跌倒" ,style: headStyle, ),
+                                      ),
 
-                                    width:  MediaQuery.of(context).size.width/3,
-                                    child: Column(
+                                      (info.fallState == 0)?
+                                        Text("正常",style: contentStyle,)
+                                          :
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text('跌倒時間' + info.fallTime.toString(),style: contentStyle,),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: TextButton(onPressed: (){
+                                              //寫死的影片位置
+                                              Navigator.of(context).push(MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      WebViewExample(url: "https://forum.gamer.com.tw/C.php?bsn=34880&snA=12188&tnum=15&subbsn=2")));
+                                              //真正用api替換影片網址的function
+                                              // getVideoUrl(info.fallTime);
+                                              // Navigator.of(context).push(MaterialPageRoute(
+                                              //     builder: (context) =>
+                                              //         Video(time: info.fallTime.toString())));
+                                            }, child: Text("確認影片")),
+                                          ),
+                                        ],
+                                      ),
+                                      // if(info.fallState == 1)Divider(thickness: 5,),
+
+                                    ],
+                                  )),
+                              Container(
+                                height:MediaQuery.of(context).size.height*0.35,
+                                width:MediaQuery.of(context).size.width*0.5,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.green,width: 5)
+                                ),child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                                       children: [
-
-
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text('一氧化碳狀態' + ((info.carbonState ==0)?"正常":"不正常")),
-                                        ),
-
-
-
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text('一氧化碳時間' + info.carbonTime.toString()),
-                                        ),
-
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text('一氧化碳數值' + info.carbonValue.toString()),
-                                        ),
-
-
+                                            Text('門窗監測',style: headStyle),
+                                            Text('正常',style: TextStyle(color: Colors.green,fontSize:18),)
                                       ],
-                                    )),
                               ),
-
-                               Container(
-                                 height: MediaQuery.of(context).size.height/3,
-                                 child: VerticalDivider(
-
-                                      width: 50,
-                              thickness: 5,
-                                 indent: 0,
-                                 endIndent: 5,
-                                 color: Colors.grey,
-                             ),
-                               ),
-                              Center(
-                                child: Container(
-
-                                    width:  MediaQuery.of(context).size.width/3,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text('煙霧數值' + ((info.smokeState==0)?"正常":"不正常")),
-                                        ),
-
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text('煙霧時間' + info.smokeValue.toString()),
-                                        ),
-
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text('煙霧狀態' + info.smokeValue.toString()),
-                                        ),
-                                      ],
-                                    )),
-                              ),
+                              )
                             ],
+                          ),
+                          // Divider(thickness: 5,endIndent: 0,),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                //下左
+                                Center(
+                                  child: Container(
+                                      height:MediaQuery.of(context).size.height*0.35,
+                                      width:MediaQuery.of(context).size.width*0.5,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(color: Colors.green,width: 5)
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+
+
+                                          Text("一氧化碳偵測",style: headStyle,),
+                                    (info.carbonState ==0)?
+                                          Text("正常",style:contentStyle,)
+                                        :
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text('一氧化碳時間' + info.carbonTime.toString(),style: contentStyle,),
+                                            ),
+
+                                            Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Text('一氧化碳數值' + info.carbonValue.toString(),style: contentStyle,),
+                                            ),
+                                          ],
+                                        )
+
+
+
+                                        ],
+                                      )),
+                                ),
+                                 //分隔線
+                               //   Container(
+                               //     height: MediaQuery.of(context).size.height*0.48,
+                               //     child: VerticalDivider(
+                               //
+                               //          width: MediaQuery.of(context).size.width*0.02,
+                               //  thickness: 5,
+                               //     indent: 0,
+                               //     endIndent: 5,
+                               //     color: Colors.grey,
+                               // ),
+                               //   ),
+                                //下右
+                                Center(
+                                  child: Container(
+                                    height:MediaQuery.of(context).size.height*0.35,
+                                    width:MediaQuery.of(context).size.width*0.5,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(color: Colors.green,width: 5)
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text("煙霧偵測",style: headStyle,),
+
+                                          (info.smokeState==0)?
+                                              Text("正常",style: contentStyle,)
+                                          :
+                                          Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Text('煙霧數值' + ((info.smokeState==0)?"正常":"不正常"),style: contentStyle,),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Text('煙霧時間' + info.smokeValue.toString(),style: contentStyle,),
+                                                ),
+
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Text('煙霧狀態' + info.smokeValue.toString(),style: contentStyle,),
+                                                ),
+                                                ],
+                                          )
+
+
+
+                                        ],
+                                      )),
+                                ),
+                              ],
+
                           ),
                         ],
                       );
