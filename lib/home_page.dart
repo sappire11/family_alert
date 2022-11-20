@@ -63,20 +63,20 @@ class _HomepageState extends State<Homepage> {
                   elevation: 0,
                   items: [
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.home),
+                      icon: Icon(Icons.home,color: Colors.grey[800],),
                       label: '首頁',
                     ),
 
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.elderly),
+                      icon: Icon(Icons.elderly,color: Colors.grey[800],),
                       label: '跌倒紀錄',
                     ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.videocam),
+                      icon: Icon(Icons.videocam,color: Colors.grey[800],),
                       label: '即時影像',
                     ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.videocam),
+                      icon: Icon(Icons.lightbulb_sharp,color: Colors.grey[800],),
                       label: '居家管理',
                     ),
                     // BottomNavigationBarItem(
