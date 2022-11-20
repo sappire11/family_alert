@@ -58,31 +58,28 @@ class _HomepageState extends State<Homepage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Flexible(
-                flex: 4,
+                flex: 5,
                 child: BottomNavigationBar(
                   elevation: 0,
                   items: [
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.home,color: Colors.grey[800],),
+                      icon: Icon(Icons.home),
                       label: '首頁',
                     ),
 
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.elderly,color: Colors.grey[800],),
+                      icon: Icon(Icons.elderly),
                       label: '跌倒紀錄',
                     ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.videocam,color: Colors.grey[800],),
+                      icon: Icon(Icons.videocam),
                       label: '即時影像',
                     ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.lightbulb_sharp,color: Colors.grey[800],),
+                      icon: Icon(Icons.lightbulb_sharp),
                       label: '居家管理',
                     ),
-                    // BottomNavigationBarItem(
-                    //   icon: Icon(Icons.settings),
-                    //   label: '設定',
-                    // ),
+
                   ],
                   currentIndex: _currentIndex,
                   // selectedItemColor: Colors.amber[800],
@@ -94,7 +91,7 @@ class _HomepageState extends State<Homepage> {
                 child: ElevatedButton(
                     style: ButtonStyle(
                       elevation: MaterialStateProperty.all(0),
-                      backgroundColor:  MaterialStateProperty.all(Colors.white),
+                      backgroundColor:  MaterialStateProperty.all(Colors.transparent),
                       foregroundColor: MaterialStateProperty.all(Colors.grey[800]),
                     ),
                     onPressed: () => {
