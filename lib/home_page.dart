@@ -55,7 +55,7 @@ class _HomepageState extends State<Homepage> {
           width: MediaQuery.of(context).size.width,
           height: 60,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Flexible(
                 flex: 4,
