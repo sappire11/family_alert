@@ -58,7 +58,7 @@ class _HomepageState extends State<Homepage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Flexible(
-                flex: 3,
+                flex: 4,
                 child: BottomNavigationBar(
                   elevation: 0,
                   items: [
