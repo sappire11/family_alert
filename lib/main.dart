@@ -7,8 +7,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:untitled/2page.dart';
+import 'package:untitled/control_panel.dart';
 import 'package:untitled/function_page.dart';
 import 'package:untitled/local.dart';
+import 'package:untitled/provider/contral_panel_provider.dart';
 import 'package:untitled/provider/setting.dart';
 import 'package:untitled/viedo.dart';
 import 'package:untitled/acconnt_function.dart';
@@ -38,7 +40,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<Setting>(
           create: (context) => new Setting(),
-
+        ),
+        ChangeNotifierProvider<ControlProvider>(
+          create: (context) => new ControlProvider(),
         ),
 
       ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled/RSTP.dart';
+import 'package:untitled/control_panel.dart';
 import 'package:untitled/provider/setting.dart';
 import 'package:untitled/test_note.dart';
 import 'package:untitled/viedo.dart';
@@ -32,9 +33,9 @@ class _HomepageState extends State<Homepage> {
   bool saving = false;
   int _currentIndex = 0; //預設值
   // final pages = [FunctionA() , Fall(), Account()];
-  final pages = [FunctionA() , Fall(),VideoRSTP()];
+  final pages = [FunctionA() , Fall(),VideoRSTP(),ControlPanel()];
   // final title = ["主頁", "跌倒紀錄", "帳號設定"];
-  final title = ["主頁", "跌倒紀錄","即時影像"];
+  final title = ["主頁", "跌倒紀錄","即時影像","居家管理"];
   void _onItemClick(int index) {
 
     setState(() {
@@ -75,7 +76,10 @@ class _HomepageState extends State<Homepage> {
                       icon: Icon(Icons.videocam),
                       label: '即時影像',
                     ),
-
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.videocam),
+                      label: '居家管理',
+                    ),
                     // BottomNavigationBarItem(
                     //   icon: Icon(Icons.settings),
                     //   label: '設定',

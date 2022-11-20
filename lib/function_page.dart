@@ -68,7 +68,8 @@ class _FunctionAState extends State<FunctionA> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                              height: MediaQuery.of(context).size.height/3,
+
+                              height: MediaQuery.of(context).size.height/4,
                               child: Column(
                                 children: [
                                   Padding(
