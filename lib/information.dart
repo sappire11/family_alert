@@ -41,16 +41,19 @@ class _FunctionAState extends State<FunctionA> {
   TextStyle contentStyle = TextStyle(fontSize: 18, color: Colors.green);
   bool doorOpen = false;
   bool fall = false;
-
+  int n = 0;
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 1), () {
+      n++;
       // doorOpen = (DateTime.now().second  %2).ceil().isOdd;
 
       setState(() {
-        if (DateTime.now().second % 4 == 0) doorOpen = !doorOpen;
+        if (n % 4 == 0) doorOpen = !doorOpen;
+        if (n % 20 == 0) fall = !fall;
+        print(doorOpen);
 
-        if (DateTime.now().second % 20 == 0) fall = !fall;
+
       });
       // callAPI();
       // setting.updateUser();
