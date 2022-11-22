@@ -39,12 +39,21 @@ class _FunctionAState extends State<FunctionA> {
   final Color troubleBorder = Colors.red;
   TextStyle headStyle = TextStyle(fontSize: 22,fontWeight: FontWeight.bold);
   TextStyle contentStyle = TextStyle(fontSize: 18,color: Colors.green);
+  bool doorOpen = false;
+  bool fall = false;
 
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration.zero, () {
+    Future.delayed(Duration(seconds: 1), () {
+      doorOpen = (DateTime.now().second % 2).ceil().isOdd;
 
+      fall = (DateTime.now().second / 10 % 2).ceil().isOdd;
+      setState(() {
+        doorOpen = !doorOpen;
+        fall = !fall;
+        print(fall);
+      });
      // callAPI();
       // setting.updateUser();
     });
@@ -60,17 +69,7 @@ class _FunctionAState extends State<FunctionA> {
               padding: const EdgeInsets.all(15.0),
               child: Text(" 你好 ! !  "+Provider.of<Setting>(context, listen: false).username,style: TextStyle(fontSize: 20),),
             ),
-
-            FutureBuilder(
-                future: _getData(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    try {
-                      final Map<String, dynamic> jsonData = json.decode(
-                          snapshot.data.toString());
-                      data info = data.fromJson(jsonData);
-
-                      return  Column(
+            Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Row(
@@ -79,17 +78,17 @@ class _FunctionAState extends State<FunctionA> {
                                   height:MediaQuery.of(context).size.height*0.35,
                                   width:MediaQuery.of(context).size.width*0.5,
                                   decoration: BoxDecoration(
-                                      border: Border.all(color:  (info.fallState == 1)?Colors.red:Colors.green,width: 5)
+                                      border: Border.all(color:  (fall)?Colors.red:Colors.green,width: 5)
                                   ),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Text( (info.fallState == 1)?"發生跌倒事件":"沒有跌倒" ,style: headStyle, ),
+                                        child: Text( (fall)?"發生跌倒事件":"沒有跌倒" ,style: headStyle, ),
                                       ),
 
-                                      (info.fallState == 0)?
+                                      (!fall)?
                                         Text("正常",style: contentStyle,)
                                           :
                                       Column(
@@ -97,15 +96,23 @@ class _FunctionAState extends State<FunctionA> {
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
-                                            child: Text('跌倒時間' + info.fallTime.toString(),style: contentStyle,),
+                                            child: Text(
+                                              // '跌倒時間' + info.fallTime.toString(),
+                                              '跌倒時間' + "2022/11/13 16:29:49",
+                                              style: contentStyle,),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: TextButton(onPressed: (){
                                               //寫死的影片位置
+                                              // Navigator.of(context).push(MaterialPageRoute(
+                                              //     builder: (context) =>
+                                              //         WebViewExample(url: "https://forum.gamer.com.tw/C.php?bsn=34880&snA=12188&tnum=15&subbsn=2")));
                                               Navigator.of(context).push(MaterialPageRoute(
                                                   builder: (context) =>
-                                                      WebViewExample(url: "https://forum.gamer.com.tw/C.php?bsn=34880&snA=12188&tnum=15&subbsn=2")));
+                                                      WebViewExample(url: "http://163.17.136.146:10007/stream/filename/?filename=20221113_162949")));
+
+
                                               //真正用api替換影片網址的function
                                               // getVideoUrl(info.fallTime);
                                               // Navigator.of(context).push(MaterialPageRoute(
@@ -123,12 +130,15 @@ class _FunctionAState extends State<FunctionA> {
                                 height:MediaQuery.of(context).size.height*0.35,
                                 width:MediaQuery.of(context).size.width*0.5,
                                 decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.green,width: 5)
+                                    border: Border.all(color:  (doorOpen)?Colors.red:Colors.green,width: 5)
                                 ),child: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                                       children: [
                                             Text('門窗監測',style: headStyle),
+                                        (doorOpen)?
+                                            Text('被開啟',style: TextStyle(color: Colors.red,fontSize:18),):
                                             Text('正常',style: TextStyle(color: Colors.green,fontSize:18),)
+
                                       ],
                               ),
                               )
@@ -153,23 +163,9 @@ class _FunctionAState extends State<FunctionA> {
 
 
                                           Text("一氧化碳偵測",style: headStyle,),
-                                    (info.carbonState ==0)?
-                                          Text("正常",style:contentStyle,)
-                                        :
-                                        Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Text('一氧化碳時間' + info.carbonTime.toString(),style: contentStyle,),
-                                            ),
 
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Text('一氧化碳數值' + info.carbonValue.toString(),style: contentStyle,),
-                                            ),
-                                          ],
-                                        )
+                                          Text("正常",style:contentStyle,)
+
 
 
 
@@ -201,27 +197,9 @@ class _FunctionAState extends State<FunctionA> {
                                         children: [
                                           Text("煙霧偵測",style: headStyle,),
 
-                                          (info.smokeState==0)?
-                                              Text("正常",style: contentStyle,)
-                                          :
-                                          Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  child: Text('煙霧數值' + ((info.smokeState==0)?"正常":"不正常"),style: contentStyle,),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  child: Text('煙霧時間' + info.smokeValue.toString(),style: contentStyle,),
-                                                ),
 
-                                                Padding(
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  child: Text('煙霧狀態' + info.smokeValue.toString(),style: contentStyle,),
-                                                ),
-                                                ],
-                                          )
+                                           Text("正常",style: contentStyle,)
+
 
 
 
@@ -232,84 +210,8 @@ class _FunctionAState extends State<FunctionA> {
 
                           ),
                         ],
-                      );
-                      //   Column(
-                      //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      //   children: [
-                      //     Padding(
-                      //       padding: const EdgeInsets.all(8.0),
-                      //       child: Text( (info.fallState == 1)?"跌倒了":"沒有跌倒"  ),
-                      //     ),
-                      //
-                      //     Divider(thickness: 5,),
-                      //     if(info.fallState == 1)Padding(
-                      //       padding: const EdgeInsets.all(8.0),
-                      //       child: Text('跌倒時間' + info.fallTime.toString()),
-                      //     ),
-                      //     if(info.fallState == 1)Divider(thickness: 5,),
-                      //     if(info.fallState == 1)
-                      //       Padding(
-                      //         padding: const EdgeInsets.all(8.0),
-                      //         child: TextButton(onPressed: (){
-                      //           getVideoUrl(info.fallTime);
-                      //           // Navigator.of(context).push(MaterialPageRoute(
-                      //           //     builder: (context) =>
-                      //           //         Video(time: info.fallTime.toString())));
-                      //           }, child: Text("確認影片")),
-                      //       ),
-                      //     Padding(
-                      //       padding: const EdgeInsets.all(8.0),
-                      //       child: Text('煙霧數值' + info.smokeState.toString()),
-                      //     ),
-                      //     Divider(thickness: 5,),
-                      //     Padding(
-                      //       padding: const EdgeInsets.all(8.0),
-                      //       child: Text('煙霧時間' + info.smokeValue.toString()),
-                      //     ),
-                      //     Divider(thickness: 5,),
-                      //     Padding(
-                      //       padding: const EdgeInsets.all(8.0),
-                      //       child: Text('煙霧狀態' + info.smokeValue.toString()),
-                      //     ),
-                      //     Divider(thickness: 5,),
-                      //     Padding(
-                      //       padding: const EdgeInsets.all(8.0),
-                      //       child: Text('一氧化碳狀態' + info.carbonState.toString()),
-                      //     ),
-                      //     Divider(thickness: 5,),
-                      //     Padding(
-                      //       padding: const EdgeInsets.all(8.0),
-                      //       child: Text('一氧化碳時間' + info.carbonTime.toString()),
-                      //     ),
-                      //     Divider(thickness: 5,),
-                      //     Padding(
-                      //       padding: const EdgeInsets.all(8.0),
-                      //       child: Text('一氧化碳數值' + info.carbonValue.toString()),
-                      //     ),
-                      //     Divider(thickness: 5,),
-                      //
-                      //   ],
-                      // );
-                    } catch (e) {
-                      return Center(child: Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Text("發生錯誤"),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Text(snapshot.data.toString(),style: TextStyle(color:Colors.red,fontSize: 20),),
-                            ),
-                          ],
-                        ),
-                      ));
-                    }
-                  }
-                  else return Center(child: CircularProgressIndicator());
-                }),
+                      )
+
 
 
           ],
