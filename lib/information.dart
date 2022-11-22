@@ -50,10 +50,8 @@ class _FunctionAState extends State<FunctionA> {
 
       setState(() {
         if (n % 4 == 0) doorOpen = !doorOpen;
-        if (n % 20 == 0) fall = !fall;
+        // if (n % 20 == 0) fall = !fall;
         print(doorOpen);
-
-
       });
       // callAPI();
       // setting.updateUser();
