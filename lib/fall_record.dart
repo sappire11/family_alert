@@ -44,7 +44,7 @@ class _FallState extends State<Fall> {
                 ),
                 // leading: Icon(Icons.group_add_outlined),
                 title: Text('跌倒事件'),
-                subtitle: Text("時間"+"2022-09-05 10:22:33"),
+                subtitle: Text("時間"+"2022-11-13 16:26:25"),
 
                 onTap: () {
                   // Update the state of the app
@@ -52,7 +52,7 @@ class _FallState extends State<Fall> {
                   // Then close the drawer
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) =>
-                          WebViewExample(url: "http://163.17.136.146:10007/stream/filename/?filename=20220905_102233")));
+                          WebViewExample(url: "http://163.17.136.146:10007/stream/filename/?filename=20221113_162625")));
                 },
               ),
             ),
@@ -65,7 +65,7 @@ class _FallState extends State<Fall> {
                 ),
                 // leading: Icon(Icons.group_add_outlined),
                 title: Text('跌倒事件'),
-                subtitle: Text("時間"+"2022-09-06 20:23:58"),
+                subtitle: Text("時間"+"2022/11/13 16:28:21"),
 
                 onTap: () {
                   // Update the state of the app
@@ -73,7 +73,7 @@ class _FallState extends State<Fall> {
                   // Then close the drawer
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) =>
-                          WebViewExample(url: "http://163.17.136.146:10007/stream/filename/?filename=20220906_202358")));
+                          WebViewExample(url: "http://163.17.136.146:10007/stream/filename/?filename=20221113_162821")));
                 },
               ),
             ),
@@ -86,7 +86,7 @@ class _FallState extends State<Fall> {
                 ),
                 // leading: Icon(Icons.group_add_outlined),
                 title: Text('跌倒事件'),
-                subtitle: Text("時間"+"2022-09-10 08:10:23"),
+                subtitle: Text("時間"+"2022/11/13 16:29:49"),
 
                 onTap: () {
                   // Update the state of the app
@@ -94,31 +94,11 @@ class _FallState extends State<Fall> {
                   // Then close the drawer
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) =>
-                          WebViewExample(url: "http://163.17.136.146:10007/stream/filename/?filename=20220910_081023")));
+                          WebViewExample(url: "http://163.17.136.146:10007/stream/filename/?filename=20221113_162949")));
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.black, width: 1),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                // leading: Icon(Icons.group_add_outlined),
-                title: Text('跌倒事件'),
-                subtitle: Text("時間"+"2022-09-15 12:48:42"),
 
-                onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          WebViewExample(url: "http://163.17.136.146:10007/stream/filename/?filename=20220915_124842")));
-                },
-              ),
-            ),
           ],
         ),
       ),
