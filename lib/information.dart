@@ -46,13 +46,11 @@ class _FunctionAState extends State<FunctionA> {
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 1), () {
       // doorOpen = (DateTime.now().second  %2).ceil().isOdd;
-      if (DateTime.now().second % 4 == 0) doorOpen = !doorOpen;
 
-      if (DateTime.now().second % 20 == 0) fall = !fall;
       setState(() {
-        doorOpen = !doorOpen;
-        fall = !fall;
-        print(fall);
+        if (DateTime.now().second % 4 == 0) doorOpen = !doorOpen;
+
+        if (DateTime.now().second % 20 == 0) fall = !fall;
       });
       // callAPI();
       // setting.updateUser();
