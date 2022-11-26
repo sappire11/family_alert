@@ -95,13 +95,7 @@ class _FunctionAState extends State<FunctionA> {
                             ),
                           ),
 
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              (fall) ? "一氧化碳偵測正常" : "沒有跌倒",
-                              style: headStyle,
-                            ),
-                          ),
+                          
                           (!fall)
                               ? Text(
                                   "正常",
