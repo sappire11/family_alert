@@ -44,7 +44,7 @@ class _ControlPanelState extends State<ControlPanel> {
                           child: Center(
                               child: Text(
                                 "臥室電燈"+((switchController.controlPanel.bedRoomLight)?"關":"開"),
-                                style: TextStyle(color:(switchController.controlPanel.bedRoomLight)?Colors.black:Colors.white) ,
+                                style: TextStyle(color:(switchController.controlPanel.bedRoomLight)?Colors.black:Colors.white,fontSize: 30) ,
                           )),
                         )
                       ),
@@ -65,7 +65,7 @@ class _ControlPanelState extends State<ControlPanel> {
                           child: Center(
                                 child: Text(
                                     "客廳電燈"+((switchController.controlPanel.livingRoomLight)?"關":"開"),
-                                      style: TextStyle(color:(switchController.controlPanel.livingRoomLight)?Colors.black:Colors.white)
+                                      style: TextStyle(color:(switchController.controlPanel.livingRoomLight)?Colors.black:Colors.white,fontSize: 30)
                                       )),
 
 
@@ -93,7 +93,7 @@ class _ControlPanelState extends State<ControlPanel> {
                               border: Border.all(color: Colors.black,width: 1)
                           ),
                           child: Center(child: Text("客廳窗簾"+((switchController.controlPanel.bathroomLight)?"關":"開"),
-                              style: TextStyle(color:(switchController.controlPanel.bathroomLight)?Colors.black:Colors.white))),
+                              style: TextStyle(color:(switchController.controlPanel.bathroomLight)?Colors.black:Colors.white,fontSize: 30))),
                         )
                     ),
                   ),
@@ -111,7 +111,7 @@ class _ControlPanelState extends State<ControlPanel> {
                               border: Border.all(color: Colors.black,width: 1)
                           ),
                           child: Center(child: Text("臥室窗簾"+((switchController.controlPanel.livingRoomCurtain)?"關":"開"),
-                                style: TextStyle(color:(switchController.controlPanel.livingRoomCurtain)?Colors.black:Colors.white))),
+                                style: TextStyle(color:(switchController.controlPanel.livingRoomCurtain)?Colors.black:Colors.white,fontSize: 30))),
                         )
                     ),
                   ),
@@ -136,7 +136,7 @@ class _ControlPanelState extends State<ControlPanel> {
                               border: Border.all(color: Colors.black,width: 1)
                           ),
                           child: Center(child: Text("冷氣"+((switchController.controlPanel.airConditioner)?"關":"開"),
-                              style: TextStyle(color:(switchController.controlPanel.airConditioner)?Colors.black:Colors.white))),
+                              style: TextStyle(color:(switchController.controlPanel.airConditioner)?Colors.black:Colors.white,fontSize: 30))),
                         )
                     ),
                   ),
