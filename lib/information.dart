@@ -33,12 +33,12 @@ class FunctionA extends StatefulWidget {
 
 class _FunctionAState extends State<FunctionA> {
   bool saving = false;
-  final double fontHeaderSize = 22;
-  final double fontContentSize = 18;
+  final double fontHeaderSize = 30;
+  final double fontContentSize = 30;
   final Color normalBorder = Colors.green;
   final Color troubleBorder = Colors.red;
-  TextStyle headStyle = TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
-  TextStyle contentStyle = TextStyle(fontSize: 18, color: Colors.green);
+  TextStyle headStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  TextStyle contentStyle = TextStyle(fontSize: 30, color: Colors.green);
   bool doorOpen = false;
   bool fall = false;
   int n = 0;
@@ -153,12 +153,12 @@ class _FunctionAState extends State<FunctionA> {
                             ? Text(
                                 '被開啟',
                                 style:
-                                    TextStyle(color: Colors.red, fontSize: 18),
+                                    TextStyle(color: Colors.red, fontSize: 30),
                               )
                             : Text(
                                 '正常',
                                 style: TextStyle(
-                                    color: Colors.green, fontSize: 18),
+                                    color: Colors.green, fontSize: 30),
                               )
                       ],
                     ),
