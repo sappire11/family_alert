@@ -80,6 +80,7 @@ class _FunctionAState extends State<FunctionA> {
                       height: MediaQuery.of(context).size.height * 0.35,
                       width: MediaQuery.of(context).size.width * 0.5,
                       decoration: BoxDecoration(
+                          color: fall?Colors.yellow:Colors.white,
                           border: Border.all(
                               color: (fall) ? Colors.red : Colors.green,
                               width: 5)),
@@ -94,6 +95,13 @@ class _FunctionAState extends State<FunctionA> {
                             ),
                           ),
 
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              (fall) ? "一氧化碳偵測正常" : "沒有跌倒",
+                              style: headStyle,
+                            ),
+                          ),
                           (!fall)
                               ? Text(
                                   "正常",
@@ -142,6 +150,7 @@ class _FunctionAState extends State<FunctionA> {
                     height: MediaQuery.of(context).size.height * 0.35,
                     width: MediaQuery.of(context).size.width * 0.5,
                     decoration: BoxDecoration(
+                        color: doorOpen?Colors.yellow:Colors.white,
                         border: Border.all(
                             color: (doorOpen) ? Colors.red : Colors.green,
                             width: 5)),
